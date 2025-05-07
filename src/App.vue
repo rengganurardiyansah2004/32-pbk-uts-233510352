@@ -27,6 +27,7 @@ const kegiatanList = ref([
 ])
 
 const tampilkanYangBelumSelesai = ref(false)
+const inputBaru = ref('')
 
 const kegiatanYangDitampilkan = computed(() => {
   return tampilkanYangBelumSelesai.value
