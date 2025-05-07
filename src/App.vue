@@ -5,6 +5,7 @@
       <input v-model="inputBaru" @keyup.enter="tambahKegiatan" placeholder="Tambah kegiatan baru..." /><button @click="tambahKegiatan">Tambah</button>
       <li v-for="(kegiatan, index) in kegiatanList" :key="index">
         {{ kegiatan.nama }}
+        <button @click="hapusKegiatan(index)">❌</button>
       </li>
     </ul>
   </div>
@@ -29,6 +30,10 @@ function tambahKegiatan() {
     kegiatanList.value.push({ nama: inputBaru.value, selesai: false })
     inputBaru.value = ''
   }
+}
+
+function hapusKegiatan(index) {
+  kegiatanList.value.splice(index, 1)
 }
 </script>
 
