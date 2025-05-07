@@ -1,6 +1,8 @@
 <template>
   <div class="container">
     <h1>List Kegiatan</h1>
+    <label>
+    <input type="checkbox" v-model="tampilkanYangBelumSelesai" />Hanya tampilkan yang belum selesai</label>
     <ul>
       <input v-model="inputBaru" @keyup.enter="tambahKegiatan" placeholder="Tambah kegiatan baru..." /><button @click="tambahKegiatan">Tambah</button>
       <li v-for="(kegiatan, index) in kegiatanList" :key="index">
