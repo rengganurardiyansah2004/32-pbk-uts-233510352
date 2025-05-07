@@ -4,7 +4,8 @@
     <ul>
       <input v-model="inputBaru" @keyup.enter="tambahKegiatan" placeholder="Tambah kegiatan baru..." /><button @click="tambahKegiatan">Tambah</button>
       <li v-for="(kegiatan, index) in kegiatanList" :key="index">
-        {{ kegiatan.nama }}
+        <input type="checkbox" v-model="kegiatan.selesai" />
+        <span :class="{ selesai: kegiatan.selesai }">{{ kegiatan.nama }}</span>
         <button @click="hapusKegiatan(index)">❌</button>
       </li>
     </ul>
@@ -43,4 +44,10 @@ function hapusKegiatan(index) {
   margin: auto;
   font-family: sans-serif;
 }
+
+.selesai {
+  text-decoration: line-through;
+  color: gray;
+}
+
 </style>
