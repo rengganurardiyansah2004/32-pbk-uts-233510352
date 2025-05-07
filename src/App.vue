@@ -21,8 +21,17 @@ const kegiatanList = ref([
   { nama: 'Makan malam', selesai: false },
   { nama: 'Tidur', selesai: false }
 ])
+
+const inputBaru = ref('')
+
+function tambahKegiatan() {
+  if (inputBaru.value.trim() !== '') {
+    kegiatanList.value.push({ nama: inputBaru.value, selesai: false })
+    inputBaru.value = ''
+  }
+}
 </script>
-git
+
 <style>
 .container {
   max-width: 600px;
