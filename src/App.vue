@@ -5,7 +5,7 @@
     <input type="checkbox" v-model="tampilkanYangBelumSelesai" />Hanya tampilkan yang belum selesai</label>
     <ul>
       <input v-model="inputBaru" @keyup.enter="tambahKegiatan" placeholder="Tambah kegiatan baru..." /><button @click="tambahKegiatan">Tambah</button>
-      <li v-for="(kegiatan, index) in kegiatanList" :key="index">
+      <li v-for="(kegiatan, index) in kegiatanYangDitampilkan" :key="index">
         <input type="checkbox" v-model="kegiatan.selesai" />
         <span :class="{ selesai: kegiatan.selesai }">{{ kegiatan.nama }}</span>
         <button @click="hapusKegiatan(index)">❌</button>
@@ -15,18 +15,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const kegiatanList = ref([
-  { nama: 'Sarapan pagi', selesai: false },
-  { nama: 'lari pagi', selesai: false },
-  { nama: 'Makan siang', selesai: false },
-  { nama: 'tidur siang', selesai: false },
-  { nama: 'Makan malam', selesai: false },
-  { nama: 'Tidur', selesai: false }
+  { nama: 'Belajar Vue', selesai: false },
+  { nama: 'Ngoding Project', selesai: false }
 ])
 
-const inputBaru = ref('')
+const tampilkanYangBelumSelesai = ref(false)
+
+const kegiatanYangDitampilkan = computed(() => {
+  return tampilkanYangBelumSelesai.value
+    ? kegiatanList.value.filter(k => !k.selesai)
+    : kegiatanList.value
+})
+
 
 function tambahKegiatan() {
   if (inputBaru.value.trim() !== '') {
