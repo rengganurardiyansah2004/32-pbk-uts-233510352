@@ -1,30 +1,32 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+  <div class="container">
+    <h1>List Kegiatan</h1>
+    <ul>
+      <input v-model="inputBaru" @keyup.enter="tambahKegiatan" placeholder="Tambah kegiatan baru..." /><button @click="tambahKegiatan">Tambah</button>
+      <li v-for="(kegiatan, index) in kegiatanList" :key="index">
+        {{ kegiatan.nama }}
+      </li>
+    </ul>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<script setup>
+import { ref } from 'vue'
+
+const kegiatanList = ref([
+  { nama: 'Sarapan pagi', selesai: false },
+  { nama: 'lari pagi', selesai: false },
+  { nama: 'Makan siang', selesai: false },
+  { nama: 'tidur siang', selesai: false },
+  { nama: 'Makan malam', selesai: false },
+  { nama: 'Tidur', selesai: false }
+])
+</script>
+git
+<style>
+.container {
+  max-width: 600px;
+  margin: auto;
+  font-family: sans-serif;
 }
 </style>
